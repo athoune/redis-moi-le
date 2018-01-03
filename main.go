@@ -46,7 +46,7 @@ func commandsFromCSource() (map[string]*Command, error) {
 	}
 	defer resp.Body.Close()
 	// {"get",getCommand,2,"rF",0,NULL,1,1,1,0,0},
-	command := regexp.MustCompile(`\s+\{"(\w+)",\w+,(-?\d+),"(\w+)",\d+,\w+,(\d+),[0-9,]*\},?`)
+	command := regexp.MustCompile(`\s+\{"([a-z\-_:]+)",\w+,(-?\d+),"(\w+)",\d+,\w+,(\d+),[0-9,]*\},?`)
 	scanner := bufio.NewScanner(resp.Body)
 	cmds := make(map[string]*Command, 0)
 	for scanner.Scan() {
